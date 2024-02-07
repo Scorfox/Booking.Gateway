@@ -9,7 +9,7 @@ public sealed class CreateClientMapper : Profile
 {
     public CreateClientMapper()
     {
-        CreateMap<CreateClientRequest, CreateClient>();
-        CreateMap<CreateClientResult, CreateClientResponse>();
+        CreateMap<CreateClientRequest, CreateUser>();
+        CreateMap<CreateUserResult, CreateClientResponse>();
     }
 }
