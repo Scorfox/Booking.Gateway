@@ -3,6 +3,7 @@ using Booking.Gateway.Application.Features.ClientFeatures.DeleteClient;
 using Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 using Booking.Gateway.Application.Features.ClientFeatures.GetClients;
 using Booking.Gateway.Application.Features.ClientFeatures.UpdateClient;
+using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
