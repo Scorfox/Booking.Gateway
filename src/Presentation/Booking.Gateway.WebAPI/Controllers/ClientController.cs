@@ -45,7 +45,7 @@ public class ClientController : ControllerBase
     }
     
     [HttpPut("{id}")]
-    public async Task<ActionResult<UpdateClientResponse>> UpdateClient([FromQuery] Guid id, [FromBody] UpdateClientRequest request,
+    public async Task<ActionResult<UpdateClientResponse>> UpdateClient(Guid id, [FromBody] UpdateClientRequest request,
         CancellationToken cancellationToken)
     {
         request.Id = id;
