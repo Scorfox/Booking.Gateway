@@ -1,27 +1,48 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Booking.Gateway.Application;
+using MassTransit;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Booking.WebAPI;
 
 public class Startup 
 {
-    public IConfiguration configRoot { get; }
+    public IConfiguration Configuration { get; }
     
     public Startup(IConfiguration configuration) 
     {
-        configRoot = configuration;
+        Configuration = configuration;
     }
     
-    public void ConfigureServices(IServiceCollection services) 
+    public void ConfigureServices(IServiceCollection services)
     {
+        services.ConfigureApplication();
+        services.AddMassTransit(x =>
+        {
+            // Добавляем шину сообщений
+            x.UsingRabbitMq((context, cfg) =>
+            {
+                cfg.Host(Configuration["RabbitMQ:Host"], h =>
+                {
+                    h.Username(Configuration["RabbitMQ:Username"]);
+                    h.Password(Configuration["RabbitMQ:Password"]);
+                });
+            });
+        });
         services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });                
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });           
+            c.ExampleFilters();
         });
+        services.AddSwaggerExamplesFromAssemblyOf<Startup>(); 
+        services.AddMvc();
+        
         services.AddControllers();
     }
     
     public void Configure(WebApplication app, IWebHostEnvironment env) 
     {
+        app.MapControllers();
         app.UseStaticFiles();
         app.UseRouting();
         app.UseAuthorization();

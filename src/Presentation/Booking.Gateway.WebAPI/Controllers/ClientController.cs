@@ -3,8 +3,11 @@ using Booking.Gateway.Application.Features.ClientFeatures.DeleteClient;
 using Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 using Booking.Gateway.Application.Features.ClientFeatures.GetClients;
 using Booking.Gateway.Application.Features.ClientFeatures.UpdateClient;
+using Booking.WebAPI.Swagger.Requests;
+using Booking.WebAPI.Swagger.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Booking.WebAPI.Controllers;
 
@@ -36,6 +39,8 @@ public class ClientController : ControllerBase
     }
     
     [HttpPost]
+    [SwaggerRequestExample(typeof(CreateClientRequest), typeof(CreateClientRequestExamples))]
+    [SwaggerResponseExample(200, typeof(ClientGettingExamples))]
     public async Task<ActionResult<CreateClientResponse>> CreateClient([FromBody] CreateClientRequest request,
         CancellationToken cancellationToken)
     {
@@ -44,7 +49,9 @@ public class ClientController : ControllerBase
     }
     
     [HttpPut("{id}")]
-    public async Task<ActionResult<UpdateClientResponse>> UpdateClient([FromQuery] Guid id, [FromBody] UpdateClientRequest request,
+    [SwaggerRequestExample(typeof(UpdateClientRequest), typeof(UpdateClientRequestExamples))]
+    [SwaggerResponseExample(200, typeof(ClientGettingExamples))]
+    public async Task<ActionResult<UpdateClientResponse>> UpdateClient(Guid id, [FromBody] UpdateClientRequest request,
         CancellationToken cancellationToken)
     {
         request.Id = id;
