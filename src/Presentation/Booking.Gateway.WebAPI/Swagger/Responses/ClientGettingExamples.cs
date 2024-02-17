@@ -8,7 +8,7 @@ public class ClientGettingExamples : IMultipleExamplesProvider<ClientGettingDto>
     public IEnumerable<SwaggerExample<ClientGettingDto>> GetExamples()
     {
         yield return SwaggerExample.Create(
-            "Client1",
+            "TestClient1",
             new ClientGettingDto
             {
                 Id = Guid.NewGuid(),
@@ -21,7 +21,7 @@ public class ClientGettingExamples : IMultipleExamplesProvider<ClientGettingDto>
             });
         
         yield return SwaggerExample.Create(
-            "Client2",
+            "TestClient2",
             new ClientGettingDto
             {
                 Id = Guid.NewGuid(),

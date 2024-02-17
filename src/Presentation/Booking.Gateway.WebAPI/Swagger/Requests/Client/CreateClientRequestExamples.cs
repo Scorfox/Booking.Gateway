@@ -1,7 +1,7 @@
 ﻿using Booking.Gateway.Application.Features.ClientFeatures.CreateClient;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace Booking.WebAPI.Swagger.Requests;
+namespace Booking.WebAPI.Swagger.Requests.Client;
 
 public class CreateClientRequestExamples : IMultipleExamplesProvider<CreateClientRequest>
 {

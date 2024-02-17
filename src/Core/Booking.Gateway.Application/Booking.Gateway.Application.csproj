@@ -14,7 +14,7 @@
       <PackageReference Include="MassTransit" Version="8.1.3" />
       <PackageReference Include="MediatR" Version="12.2.0" />
       <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
-      <PackageReference Include="Otus.Booking.Common" Version="0.0.0-g50fd7ce889" />
+      <PackageReference Include="Otus.Booking.Common" Version="0.0.0-gd59a3731dd" />
     </ItemGroup>
 
 </Project>

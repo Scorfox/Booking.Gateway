@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MassTransit;
 using MediatR;
-using Otus.Booking.Common.Booking.Contracts.Authentication.Responses;
-using ContractRequests = Otus.Booking.Common.Booking.Contracts.Authentication.Requests;
+using Otus.Booking.Common.Booking.Contracts.User.Responses;
+using ContractRequests = Otus.Booking.Common.Booking.Contracts.User.Requests;
 
 namespace Booking.Gateway.Application.Features.ClientFeatures.CreateClient;
 
