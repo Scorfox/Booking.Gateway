@@ -2,6 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 
-public sealed record GetClientResponse : ClientGettingDto
-{
-}
+public sealed record GetClientResponse : ClientGettingDto { }

@@ -4,6 +4,7 @@ using Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 using Booking.Gateway.Application.Features.ClientFeatures.GetClients;
 using Booking.Gateway.Application.Features.ClientFeatures.UpdateClient;
 using Booking.WebAPI.Swagger.Requests;
+using Booking.WebAPI.Swagger.Requests.Client;
 using Booking.WebAPI.Swagger.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,47 +24,42 @@ public class ClientController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<GetClientResponse>> GetClient([FromQuery] GetClientRequest request, 
+    public async Task<GetClientResponse> GetClient([FromQuery] GetClientRequest request, 
         CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(request, cancellationToken);
-        return Ok(response);
+        return await _mediator.Send(request, cancellationToken);
     }
     
     [HttpGet]
-    public async Task<ActionResult<GetClientsResponse>> GetClients([FromQuery] GetClientsRequest request, 
+    public async Task<GetClientsResponse> GetClients([FromQuery] GetClientsRequest request, 
         CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(request, cancellationToken);
-        return Ok(response);
+        return await _mediator.Send(request, cancellationToken);
     }
     
     [HttpPost]
     [SwaggerRequestExample(typeof(CreateClientRequest), typeof(CreateClientRequestExamples))]
     [SwaggerResponseExample(200, typeof(ClientGettingExamples))]
-    public async Task<ActionResult<CreateClientResponse>> CreateClient([FromBody] CreateClientRequest request,
+    public async Task<CreateClientResponse> CreateClient([FromBody] CreateClientRequest request,
         CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(request, cancellationToken);
-        return Ok(response);
+        return await _mediator.Send(request, cancellationToken);
     }
     
     [HttpPut("{id}")]
     [SwaggerRequestExample(typeof(UpdateClientRequest), typeof(UpdateClientRequestExamples))]
     [SwaggerResponseExample(200, typeof(ClientGettingExamples))]
-    public async Task<ActionResult<UpdateClientResponse>> UpdateClient(Guid id, [FromBody] UpdateClientRequest request,
+    public async Task<UpdateClientResponse> UpdateClient(Guid id, [FromBody] UpdateClientRequest request,
         CancellationToken cancellationToken)
     {
         request.Id = id;
-        var response = await _mediator.Send(request, cancellationToken);
-        return Ok(response);
+        return await _mediator.Send(request, cancellationToken);
     }
     
     [HttpDelete("{id}")]
-    public async Task<ActionResult<DeleteClientResponse>> DeleteClient([FromQuery] DeleteClientRequest request,
+    public async Task<DeleteClientResponse> DeleteClient([FromQuery] DeleteClientRequest request,
         CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(request, cancellationToken);
-        return Ok(response);
+        return await _mediator.Send(request, cancellationToken);
     }
 }

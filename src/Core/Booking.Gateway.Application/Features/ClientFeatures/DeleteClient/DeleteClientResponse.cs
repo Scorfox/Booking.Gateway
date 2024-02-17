@@ -1,6 +1,5 @@
-﻿namespace Booking.Gateway.Application.Features.ClientFeatures.DeleteClient;
+﻿using Booking.Gateway.Application.Models.Common;
 
-public sealed record DeleteClientResponse
-{
-    public Guid Id { get; set; }
-}
+namespace Booking.Gateway.Application.Features.ClientFeatures.DeleteClient;
+
+public sealed record DeleteClientResponse : BaseDeletionResponse { }
