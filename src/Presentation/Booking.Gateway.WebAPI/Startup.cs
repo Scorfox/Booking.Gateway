@@ -1,6 +1,7 @@
 ﻿using Booking.Gateway.Application;
 using MassTransit;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Booking.WebAPI;
 
@@ -30,8 +31,10 @@ public class Startup
         });
         services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });                
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });           
+            c.ExampleFilters();
         });
+        services.AddSwaggerExamplesFromAssemblyOf<Startup>(); 
         services.AddMvc();
         
         services.AddControllers();
