@@ -1,7 +1,7 @@
 ﻿using Booking.Gateway.Application.Features.ClientFeatures.UpdateClient;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace Booking.WebAPI.Swagger.Requests;
+namespace Booking.WebAPI.Swagger.Requests.Client;
 
 public class UpdateClientRequestExamples : IMultipleExamplesProvider<UpdateClientRequest>
 {

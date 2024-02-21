@@ -3,6 +3,4 @@ using MediatR;
 
 namespace Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 
-public sealed record GetClientRequest : RequestById, IRequest<GetClientResponse>
-{
-}
+public sealed record GetClientRequest : RequestById, IRequest<GetClientResponse> { }
