@@ -12,14 +12,15 @@ public sealed class GetClientHandler : IRequestHandler<GetClientRequest, GetClie
     private readonly IRequestClient<ContractRequests.GetUserId> _requestUser;
     private readonly IMapper _mapper;
 
-    public GetClientHandler(IMapper mapper)
+    public GetClientHandler(IMapper mapper, IRequestClient<ContractRequests.GetUserId> requestUser)
     {
         _mapper = mapper;
+        _requestUser = requestUser;
     }
 
     public async Task<GetClientResponse> Handle(GetClientRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestUser.GetResponse<GetUsersListResult>(_mapper.Map<ContractRequests.GetUserId>(request), cancellationToken);
+        var response = await _requestUser.GetResponse<GetUsersListResult>(_mapper.Map<ContractRequests.GetUserId>(request));
         return _mapper.Map<GetClientResponse>(response.Message);
     }
 }
