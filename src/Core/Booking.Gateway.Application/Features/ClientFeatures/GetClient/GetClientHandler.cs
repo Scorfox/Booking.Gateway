@@ -20,7 +20,7 @@ public sealed class GetClientHandler : IRequestHandler<GetClientRequest, GetClie
 
     public async Task<GetClientResponse> Handle(GetClientRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestUser.GetResponse<GetUsersListResult>(_mapper.Map<ContractRequests.GetUserId>(request));
+        var response = await _requestUser.GetResponse<GetUserResult>(_mapper.Map<ContractRequests.GetUserId>(request));
         return _mapper.Map<GetClientResponse>(response.Message);
     }
 }

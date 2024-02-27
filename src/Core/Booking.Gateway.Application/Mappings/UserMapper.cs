@@ -21,6 +21,6 @@ public sealed class UserMapper : Profile
         CreateMap<UpdateUserResult, UpdateClientResponse>();
 
         CreateMap<GetClientRequest, GetUserId>();
-        CreateMap<GetUsersListResult, GetClientResponse>();
+        CreateMap<GetUserResult, GetClientResponse>();
     }
 }
