@@ -1,4 +1,6 @@
-﻿using Booking.Gateway.Application;
+﻿#define dds_tests
+
+using Booking.Gateway.Application;
 using MassTransit;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
@@ -19,6 +21,17 @@ public class Startup
         services.ConfigureApplication();
         services.AddMassTransit(x =>
         {
+#if dds_tests
+            x.UsingRabbitMq((context, cfg) =>
+            {
+                cfg.Host(Configuration["RabbitMQdds:Host"], h =>
+                {
+                    h.Username(Configuration["RabbitMQdds:Username"]);
+                    h.Password(Configuration["RabbitMQdds:Password"]);
+                });
+            });
+
+#else
             // Добавляем шину сообщений
             x.UsingRabbitMq((context, cfg) =>
             {
@@ -28,6 +41,7 @@ public class Startup
                     h.Password(Configuration["RabbitMQ:Password"]);
                 });
             });
+#endif
         });
         services.AddSwaggerGen(c =>
         {

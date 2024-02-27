@@ -6,6 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <RootNamespace>Booking.WebAPI</RootNamespace>
+        <AssemblyVersion>1.0.0227.18961</AssemblyVersion>
+        <FileVersion>1.0.0227.18961</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
