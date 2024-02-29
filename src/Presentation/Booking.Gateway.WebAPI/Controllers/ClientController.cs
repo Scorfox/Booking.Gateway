@@ -23,8 +23,8 @@ public class ClientController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("{id}")]
-    public async Task<GetClientResponse> GetClient([FromQuery] GetClientRequest request, 
+    [HttpGet("{Id}")]
+    public async Task<GetClientResponse> GetClient([FromRoute] GetClientRequest request, 
         CancellationToken cancellationToken)
     {
         return await _mediator.Send(request, cancellationToken);

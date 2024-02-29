@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Booking.Gateway.Application.Features.ClientFeatures.CreateClient;
+using Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 using Booking.Gateway.Application.Features.ClientFeatures.UpdateClient;
 using Otus.Booking.Common;
 using Otus.Booking.Common.Booking.Contracts.User.Requests;
@@ -18,5 +19,8 @@ public sealed class UserMapper : Profile
         CreateMap<UpdateClientRequest, UpdateUser>()
             .ForMember(d => d.RoleId, e => e.MapFrom(s => Roles.GetAllRolesWithIds()[Roles.Client]));
         CreateMap<UpdateUserResult, UpdateClientResponse>();
+
+        CreateMap<GetClientRequest, GetUserId>();
+        CreateMap<GetUserResult, GetClientResponse>();
     }
 }
