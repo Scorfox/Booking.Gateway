@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
+using Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 using Booking.Gateway.Application.Features.CompanyFeatures.CreateCompany;
 using Booking.Gateway.Application.Features.CompanyFeatures.DeleteCompany;
 using Booking.Gateway.Application.Features.CompanyFeatures.GetCompanies;
+using Booking.Gateway.Application.Features.CompanyFeatures.GetCompany;
 using Booking.Gateway.Application.Features.CompanyFeatures.UpdateCompany;
 using Booking.Gateway.Application.Models.Company;
 using Otus.Booking.Common.Booking.Contracts.Company.Models;
 using Otus.Booking.Common.Booking.Contracts.Company.Requests;
 using Otus.Booking.Common.Booking.Contracts.Company.Responses;
+using Otus.Booking.Common.Booking.Contracts.User.Requests;
+using Otus.Booking.Common.Booking.Contracts.User.Responses;
 
 namespace Booking.Gateway.Application.Mappings;
 
@@ -25,5 +29,8 @@ public sealed class CompanyMapper : Profile
 
         CreateMap<UpdateCompanyRequest, UpdateCompany>();
         CreateMap<UpdateCompanyResult, UpdateCompanyResponse>();
+
+        CreateMap<GetCompanyRequest, GetCompanieId>();
+        CreateMap<GetCompanyResult, GetCompanyResponse>();
     }
 }
