@@ -12,10 +12,10 @@ public sealed class GetCompanyHandler : IRequestHandler<GetCompanyRequest, GetCo
     private readonly IMapper _mapper;
     private readonly IRequestClient<ContractRequests.GetCompanieId> _requestCompany;
 
-    public GetCompanyHandler(IMapper mapper, IRequestClient<ContractRequests.GetCompanieId> requestUser)
+    public GetCompanyHandler(IMapper mapper, IRequestClient<ContractRequests.GetCompanieId> requestCompany)
     {
         _mapper = mapper;
-        _requestCompany = requestUser;
+        _requestCompany = requestCompany;
     }
 
     public async Task<GetCompanyResponse> Handle(GetCompanyRequest request, CancellationToken cancellationToken)
