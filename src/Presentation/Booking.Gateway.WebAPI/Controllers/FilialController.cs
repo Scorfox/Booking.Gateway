@@ -22,8 +22,8 @@ public class FilialController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("{id}")]
-    public async Task<GetFilialResponse> GetFilial([FromQuery] GetFilialRequest request, 
+    [HttpGet("{Id}")]
+    public async Task<GetFilialResponse> GetFilial([FromRoute] GetFilialRequest request, 
         CancellationToken cancellationToken)
     {
         return await _mediator.Send(request, cancellationToken);
@@ -45,7 +45,7 @@ public class FilialController : ControllerBase
         return await _mediator.Send(request, cancellationToken);
     }
     
-    [HttpPut("{id}")]
+    [HttpPut("{Id}")]
     [SwaggerRequestExample(typeof(UpdateFilialRequest), typeof(UpdateFilialRequestExamples))]
     [SwaggerResponseExample(200, typeof(FilialGettingExamples))]
     public async Task<UpdateFilialResponse> UpdateFilial(Guid id, [FromBody] UpdateFilialRequest request,
@@ -55,7 +55,7 @@ public class FilialController : ControllerBase
         return await _mediator.Send(request, cancellationToken);
     }
     
-    [HttpDelete("{id}")]
+    [HttpDelete("{Id}")]
     public async Task<DeleteFilialResponse> DeleteFilial([FromQuery] DeleteFilialRequest request,
         CancellationToken cancellationToken)
     {
