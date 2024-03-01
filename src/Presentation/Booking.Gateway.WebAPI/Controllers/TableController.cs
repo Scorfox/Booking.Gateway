@@ -22,8 +22,8 @@ public class TableController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("{id}")]
-    public async Task<GetTableResponse> GetTable([FromQuery] GetTableRequest request, CancellationToken cancellationToken)
+    [HttpGet("{Id}")]
+    public async Task<GetTableResponse> GetTable([FromRoute] GetTableRequest request, CancellationToken cancellationToken)
     {
         return await _mediator.Send(request, cancellationToken);
     }
@@ -44,7 +44,7 @@ public class TableController : ControllerBase
         return await _mediator.Send(request, cancellationToken);
     }
     
-    [HttpPut("{id}")]
+    [HttpPut("{Id}")]
     [SwaggerRequestExample(typeof(UpdateTableRequest), typeof(UpdateTableRequestExamples))]
     [SwaggerResponseExample(200, typeof(TableGettingExamples))]
     public async Task<UpdateTableResponse> UpdateTable(Guid id, [FromBody] UpdateTableRequest request,
@@ -54,7 +54,7 @@ public class TableController : ControllerBase
         return await _mediator.Send(request, cancellationToken);
     }
     
-    [HttpDelete("{id}")]
+    [HttpDelete("{Id}")]
     public async Task<DeleteTableResponse> DeleteTable([FromQuery] DeleteTableRequest request,
         CancellationToken cancellationToken)
     {
