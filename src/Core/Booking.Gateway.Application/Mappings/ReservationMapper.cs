@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Booking.Gateway.Application.Features.ReservationFeatures.CreateReservation;
+using Booking.Gateway.Application.Features.ReservationFeatures.GetReservation;
 using Booking.Gateway.Application.Features.ReservationFeatures.UpdateReservation;
+using Otus.Booking.Common.Booking.Contracts.Reservation.Models;
 using Otus.Booking.Common.Booking.Contracts.Reservation.Requests;
 using Otus.Booking.Common.Booking.Contracts.Reservation.Responses;
 
@@ -15,5 +17,8 @@ public sealed class ReservationMapper : Profile
 
         CreateMap<UpdateReservationRequest, UpdateReservation>();
         CreateMap<UpdateReservationResult, UpdateReservationResponse>();
+
+        CreateMap<GetReservationRequest, GetReservationId>();
+        CreateMap<FullReservationDto, GetReservationResponse>();
     }
 }
