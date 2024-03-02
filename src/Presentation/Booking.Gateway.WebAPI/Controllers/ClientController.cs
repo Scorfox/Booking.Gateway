@@ -3,7 +3,6 @@ using Booking.Gateway.Application.Features.ClientFeatures.DeleteClient;
 using Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 using Booking.Gateway.Application.Features.ClientFeatures.GetClients;
 using Booking.Gateway.Application.Features.ClientFeatures.UpdateClient;
-using Booking.WebAPI.Swagger.Requests;
 using Booking.WebAPI.Swagger.Requests.Client;
 using Booking.WebAPI.Swagger.Responses;
 using MediatR;
