@@ -3,6 +3,7 @@ using Booking.Gateway.Application.Features.ClientFeatures.CreateClient;
 using Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 using Booking.Gateway.Application.Features.ClientFeatures.UpdateClient;
 using Otus.Booking.Common;
+using Otus.Booking.Common.Booking.Contracts.User.Models;
 using Otus.Booking.Common.Booking.Contracts.User.Requests;
 using Otus.Booking.Common.Booking.Contracts.User.Responses;
 
@@ -21,6 +22,6 @@ public sealed class UserMapper : Profile
         CreateMap<UpdateUserResult, UpdateClientResponse>();
 
         CreateMap<GetClientRequest, GetUserId>();
-        CreateMap<GetUserResult, GetClientResponse>();
+        CreateMap<FullUserDto, GetClientResponse>();
     }
 }
