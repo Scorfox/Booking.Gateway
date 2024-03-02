@@ -22,8 +22,8 @@ public class ReservationController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("{id}")]
-    public async Task<GetReservationResponse> GetReservation([FromQuery] GetReservationRequest request, 
+    [HttpGet("{Id}")]
+    public async Task<GetReservationResponse> GetReservation([FromRoute] GetReservationRequest request, 
         CancellationToken cancellationToken)
     {
         return await _mediator.Send(request, cancellationToken);
@@ -45,7 +45,7 @@ public class ReservationController : ControllerBase
         return await _mediator.Send(request, cancellationToken);
     }
     
-    [HttpPut("{id}")]
+    [HttpPut("{Id}")]
     [SwaggerRequestExample(typeof(UpdateReservationRequest), typeof(UpdateReservationRequestExamples))]
     [SwaggerResponseExample(200, typeof(ReservationGettingExamples))]
     public async Task<UpdateReservationResponse> UpdateReservation(Guid id, [FromBody] UpdateReservationRequest request,
@@ -55,7 +55,7 @@ public class ReservationController : ControllerBase
         return await _mediator.Send(request, cancellationToken);
     }
     
-    [HttpDelete("{id}")]
+    [HttpDelete("{Id}")]
     public async Task<DeleteReservationResponse> DeleteReservation([FromQuery] DeleteReservationRequest request,
         CancellationToken cancellationToken)
     {
