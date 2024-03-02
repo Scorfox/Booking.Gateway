@@ -21,9 +21,7 @@ public sealed class GetCompaniesHandler : IRequestHandler<GetCompaniesRequest, G
     public async Task<GetCompaniesResponse> Handle(GetCompaniesRequest request, CancellationToken cancellationToken)
     {
         var req = _mapper.Map<GetCompaniesList>(request);
-        var response =
-
-            await _requestCompanies.GetResponse<GetCompaniesListResult>(req, cancellationToken);
+        var response = await _requestCompanies.GetResponse<GetCompaniesListResult>(req, cancellationToken);
 
         return new GetCompaniesResponse
         {

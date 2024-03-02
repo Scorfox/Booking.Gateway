@@ -1,6 +1,7 @@
 ﻿//#define dds_tests
 
 using Booking.Gateway.Application;
+using Booking.WebAPI.Extensions;
 using MassTransit;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
@@ -50,13 +51,14 @@ public class Startup
         });
         services.AddSwaggerExamplesFromAssemblyOf<Startup>(); 
         services.AddMvc();
-        
+
         services.AddControllers();
     }
     
     public void Configure(WebApplication app, IWebHostEnvironment env) 
     {
         app.MapControllers();
+        app.UseErrorHandler();
         app.UseStaticFiles();
         app.UseRouting();
         app.UseAuthorization();
