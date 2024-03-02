@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Booking.Gateway.Application.Features.ClientFeatures.CreateClient;
 using MassTransit;
 using MediatR;
+using Otus.Booking.Common.Booking.Contracts.User.Models;
 using Otus.Booking.Common.Booking.Contracts.User.Responses;
 using ContractRequests = Otus.Booking.Common.Booking.Contracts.User.Requests;
 
@@ -20,7 +20,7 @@ public sealed class GetClientHandler : IRequestHandler<GetClientRequest, GetClie
 
     public async Task<GetClientResponse> Handle(GetClientRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestUser.GetResponse<GetUserResult>(_mapper.Map<ContractRequests.GetUserId>(request));
+        var response = await _requestUser.GetResponse<FullUserDto>(_mapper.Map<ContractRequests.GetUserId>(request));
         return _mapper.Map<GetClientResponse>(response.Message);
     }
 }
