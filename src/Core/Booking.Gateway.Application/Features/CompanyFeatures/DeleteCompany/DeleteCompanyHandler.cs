@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MassTransit;
 using MediatR;
+using Otus.Booking.Common.Booking.Contracts.Company.Responses;
 using ContractRequests = Otus.Booking.Common.Booking.Contracts.Company.Requests;
 
 namespace Booking.Gateway.Application.Features.CompanyFeatures.DeleteCompany;
@@ -18,7 +19,7 @@ public sealed class DeleteCompanyHandler : IRequestHandler<DeleteCompanyRequest,
 
     public async Task<DeleteCompanyResponse> Handle(DeleteCompanyRequest request, CancellationToken cancellationToken)
     {
-        await _requestCompany.GetResponse<ContractRequests.DeleteCompany>(
+        await _requestCompany.GetResponse<DeleteCompanyResult>(
             _mapper.Map<ContractRequests.DeleteCompany>(request), cancellationToken);
 
         return new DeleteCompanyResponse{Id = request.Id};
