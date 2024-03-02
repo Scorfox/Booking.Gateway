@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Booking.Gateway.Application.Features.ClientFeatures.CreateClient;
 using MassTransit;
 using MediatR;
 using Otus.Booking.Common.Booking.Contracts.User.Responses;

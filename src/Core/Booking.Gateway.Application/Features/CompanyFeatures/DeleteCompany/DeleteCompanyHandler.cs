@@ -18,7 +18,6 @@ public sealed class DeleteCompanyHandler : IRequestHandler<DeleteCompanyRequest,
 
     public async Task<DeleteCompanyResponse> Handle(DeleteCompanyRequest request, CancellationToken cancellationToken)
     {
-        // TODO: запрос в Booking.Auth
         await _requestCompany.GetResponse<ContractRequests.DeleteCompany>(
             _mapper.Map<ContractRequests.DeleteCompany>(request), cancellationToken);
 
