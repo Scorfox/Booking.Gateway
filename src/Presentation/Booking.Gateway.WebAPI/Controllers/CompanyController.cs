@@ -22,7 +22,7 @@ public class CompanyController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{Id}")]
     public async Task<GetCompanyResponse> GetCompany([FromQuery] GetCompanyRequest request, 
         CancellationToken cancellationToken)
     {

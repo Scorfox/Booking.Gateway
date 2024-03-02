@@ -45,7 +45,7 @@ public class ClientController : ControllerBase
         return await _mediator.Send(request, cancellationToken);
     }
     
-    [HttpPut("{id}")]
+    [HttpPut("{Id}")]
     [SwaggerRequestExample(typeof(UpdateClientRequest), typeof(UpdateClientRequestExamples))]
     [SwaggerResponseExample(200, typeof(ClientGettingExamples))]
     public async Task<UpdateClientResponse> UpdateClient(Guid id, [FromBody] UpdateClientRequest request,
@@ -55,7 +55,7 @@ public class ClientController : ControllerBase
         return await _mediator.Send(request, cancellationToken);
     }
     
-    [HttpDelete("{id}")]
+    [HttpDelete("{Id}")]
     public async Task<DeleteClientResponse> DeleteClient([FromQuery] DeleteClientRequest request,
         CancellationToken cancellationToken)
     {
