@@ -22,3 +22,4 @@ public sealed class GetTableHandler : IRequestHandler<GetTableRequest, GetTableR
         var response = await _tableFilial.GetResponse<FullTableDto>(_mapper.Map<ContractRequests.GetTableId>(request));
         return _mapper.Map<GetTableResponse>(response.Message);
     }
+}
