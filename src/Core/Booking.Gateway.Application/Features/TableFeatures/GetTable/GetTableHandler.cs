@@ -19,7 +19,7 @@ public sealed class GetTableHandler : IRequestHandler<GetTableRequest, GetTableR
 
     public async Task<GetTableResponse> Handle(GetTableRequest request, CancellationToken cancellationToken)
     {
-        var response = await _tableFilial.GetResponse<FullTableDto>(_mapper.Map<ContractRequests.GetTableId>(request));
-        return _mapper.Map<GetTableResponse>(response.Message);
+        // TODO: запрос в Auth
+        return new GetTableResponse();
     }
 }

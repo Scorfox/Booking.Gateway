@@ -20,7 +20,7 @@ public sealed class GetClientHandler : IRequestHandler<GetClientRequest, GetClie
 
     public async Task<GetClientResponse> Handle(GetClientRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestUser.GetResponse<FullUserDto>(_mapper.Map<ContractRequests.GetUserId>(request));
-        return _mapper.Map<GetClientResponse>(response.Message);
+        // TODO: запрос в Auth
+        return new GetClientResponse();
     }
 }
