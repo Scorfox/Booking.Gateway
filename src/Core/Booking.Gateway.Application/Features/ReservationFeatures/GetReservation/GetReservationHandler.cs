@@ -19,7 +19,7 @@ public sealed class GetReservationHandler : IRequestHandler<GetReservationReques
 
     public async Task<GetReservationResponse> Handle(GetReservationRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestReservation.GetResponse<FullReservationDto>(_mapper.Map<ContractRequests.GetReservationId>(request));
-        return _mapper.Map<GetReservationResponse>(response.Message);
+        // TODO: запрос в Auth
+        return new GetReservationResponse();
     }
 }

@@ -21,6 +21,5 @@ public sealed class FilialMapper : Profile
         CreateMap<UpdateFilialResult, UpdateFilialResponse>();
 
         CreateMap<GetFilialRequest, GetFilialId>();
-        CreateMap<GetFilialResult, GetFilialResponse>();
     }
 }

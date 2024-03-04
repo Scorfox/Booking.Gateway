@@ -20,7 +20,7 @@ public sealed class GetFilialHandler : IRequestHandler<GetFilialRequest, GetFili
 
     public async Task<GetFilialResponse> Handle(GetFilialRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestFilial.GetResponse<GetFilialResult>(_mapper.Map<ContractRequests.GetFilialId>(request));
-        return _mapper.Map<GetFilialResponse>(response.Message);
+        // TODO: запрос в Auth
+        return new GetFilialResponse();
     }
 }
