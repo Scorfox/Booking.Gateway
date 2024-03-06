@@ -19,6 +19,6 @@ public sealed class ReservationMapper : Profile
         CreateMap<UpdateReservationResult, UpdateReservationResponse>();
 
         CreateMap<GetReservationRequest, GetReservationId>();
-        CreateMap<FullReservationDto, GetReservationResponse>();
+        CreateMap<GetReservationResult, GetReservationResponse>();
     }
 }

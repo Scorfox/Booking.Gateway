@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using Booking.Gateway.Application.Features.CompanyFeatures.GetCompany;
+using Booking.Gateway.Application.Features.ReservationFeatures.GetReservation;
 using MassTransit;
 using MediatR;
+using Otus.Booking.Common.Booking.Contracts.Filial.Requests;
 using Otus.Booking.Common.Booking.Contracts.Filial.Responses;
+using Otus.Booking.Common.Booking.Contracts.Reservation.Requests;
 using ContractRequests = Otus.Booking.Common.Booking.Contracts.Filial.Requests;
 
 namespace Booking.Gateway.Application.Features.FilialFeatures.GetFilial;
@@ -20,7 +23,7 @@ public sealed class GetFilialHandler : IRequestHandler<GetFilialRequest, GetFili
 
     public async Task<GetFilialResponse> Handle(GetFilialRequest request, CancellationToken cancellationToken)
     {
-        // TODO: запрос в Auth
-        return new GetFilialResponse();
+        var response = await _requestFilial.GetResponse<GetFilialRequest>(_mapper.Map<GetFilialId>(request));
+        return _mapper.Map<GetFilialResponse>(response.Message);
     }
 }

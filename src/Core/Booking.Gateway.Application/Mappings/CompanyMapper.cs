@@ -31,6 +31,6 @@ public sealed class CompanyMapper : Profile
         CreateMap<UpdateCompanyResult, UpdateCompanyResponse>();
 
         CreateMap<GetCompanyRequest, GetCompanyId>();
-        CreateMap<FullCompanyDto, GetCompanyResponse>();
+        CreateMap<GetCompanyResult, GetCompanyResponse>();
     }
 }
