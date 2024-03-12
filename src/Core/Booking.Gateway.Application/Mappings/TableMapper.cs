@@ -18,7 +18,7 @@ public sealed class TableMapper : Profile
         CreateMap<UpdateTableRequest, UpdateTable>();
         CreateMap<UpdateTableResult, UpdateTableResponse>();
 
-        CreateMap<GetTableRequest, GetTableId>();
+        CreateMap<GetTableRequest, GetTableById>();
         CreateMap<GetTableResult, GetTableResponse>();
     }
 }

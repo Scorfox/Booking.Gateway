@@ -20,7 +20,7 @@ public sealed class FilialMapper : Profile
         CreateMap<UpdateFilialRequest, UpdateFilial>();
         CreateMap<UpdateFilialResult, UpdateFilialResponse>();
 
-        CreateMap<GetFilialRequest, GetFilialId>();
+        CreateMap<GetFilialRequest, GetFilialById>();
         CreateMap<GetFilialResult, GetFilialResponse>();
     }
 }

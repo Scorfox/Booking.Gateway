@@ -11,9 +11,9 @@ namespace Booking.Gateway.Application.Features.CompanyFeatures.GetCompany;
 public sealed class GetCompanyHandler : IRequestHandler<GetCompanyRequest, GetCompanyResponse>
 {
     private readonly IMapper _mapper;
-    private readonly IRequestClient<ContractRequests.GetCompanyId> _requestCompany;
+    private readonly IRequestClient<ContractRequests.GetCompanyById> _requestCompany;
 
-    public GetCompanyHandler(IMapper mapper, IRequestClient<ContractRequests.GetCompanyId> requestCompany)
+    public GetCompanyHandler(IMapper mapper, IRequestClient<ContractRequests.GetCompanyById> requestCompany)
     {
         _mapper = mapper;
         _requestCompany = requestCompany;
@@ -21,7 +21,7 @@ public sealed class GetCompanyHandler : IRequestHandler<GetCompanyRequest, GetCo
 
     public async Task<GetCompanyResponse> Handle(GetCompanyRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestCompany.GetResponse<GetCompanyRequest>(_mapper.Map<GetCompanyId>(request));
+        var response = await _requestCompany.GetResponse<GetCompanyRequest>(_mapper.Map<GetCompanyById>(request));
         return _mapper.Map<GetCompanyResponse>(response.Message);
     }
 }

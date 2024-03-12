@@ -9,9 +9,9 @@ namespace Booking.Gateway.Application.Features.ReservationFeatures.GetReservatio
 public sealed class GetReservationHandler : IRequestHandler<GetReservationRequest, GetReservationResponse>
 {
     private readonly IMapper _mapper;
-    private readonly IRequestClient<ContractRequests.GetReservationId> _requestReservation;
+    private readonly IRequestClient<ContractRequests.GetReservationById> _requestReservation;
 
-    public GetReservationHandler(IMapper mapper, IRequestClient<ContractRequests.GetReservationId> requestReservation)
+    public GetReservationHandler(IMapper mapper, IRequestClient<ContractRequests.GetReservationById> requestReservation)
     {
         _mapper = mapper;
         _requestReservation = requestReservation;
@@ -19,7 +19,7 @@ public sealed class GetReservationHandler : IRequestHandler<GetReservationReques
 
     public async Task<GetReservationResponse> Handle(GetReservationRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestReservation.GetResponse<GetReservationRequest>(_mapper.Map<GetReservationId>(request));
+        var response = await _requestReservation.GetResponse<GetReservationRequest>(_mapper.Map<GetReservationById>(request));
         return _mapper.Map<GetReservationResponse>(response.Message);
     }
 }

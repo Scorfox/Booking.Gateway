@@ -21,7 +21,7 @@ public sealed class UserMapper : Profile
             .ForMember(d => d.RoleId, e => e.MapFrom(s => Roles.GetAllRolesWithIds()[Roles.Client]));
         CreateMap<UpdateUserResult, UpdateClientResponse>();
 
-        CreateMap<GetClientRequest, GetUserId>();
+        CreateMap<GetClientRequest, GetUserById>();
         CreateMap<GetUserResult, GetClientResponse>();
     }
 }

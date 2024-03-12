@@ -12,10 +12,10 @@ namespace Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 
 public sealed class GetClientHandler : IRequestHandler<GetClientRequest, GetClientResponse>
 {
-    private readonly IRequestClient<ContractRequests.GetUserId> _requestUser;
+    private readonly IRequestClient<ContractRequests.GetUserById> _requestUser;
     private readonly IMapper _mapper;
 
-    public GetClientHandler(IMapper mapper, IRequestClient<ContractRequests.GetUserId> requestUser)
+    public GetClientHandler(IMapper mapper, IRequestClient<ContractRequests.GetUserById> requestUser)
     {
         _mapper = mapper;
         _requestUser = requestUser;
@@ -23,7 +23,7 @@ public sealed class GetClientHandler : IRequestHandler<GetClientRequest, GetClie
 
     public async Task<GetClientResponse> Handle(GetClientRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestUser.GetResponse<GetClientRequest>(_mapper.Map<GetUserId>(request));
+        var response = await _requestUser.GetResponse<GetClientRequest>(_mapper.Map<GetUserById>(request));
         return _mapper.Map<GetClientResponse>(response.Message);
     }
 }
