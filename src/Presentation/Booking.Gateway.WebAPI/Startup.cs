@@ -49,9 +49,18 @@ public class Startup
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });           
             c.ExampleFilters();
         });
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(
+                services =>
+                {
+                    services.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                });
+        });
         services.AddSwaggerExamplesFromAssemblyOf<Startup>(); 
         services.AddMvc();
-
         services.AddControllers();
     }
     
@@ -61,8 +70,10 @@ public class Startup
         app.UseErrorHandler();
         app.UseStaticFiles();
         app.UseRouting();
+        app.UseCors();
         app.UseAuthorization();
-        
+        app.UseHttpsRedirection();
+
         // Enable middleware to serve generated Swagger as a JSON endpoint.
         app.UseSwagger();
         // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
@@ -73,6 +84,5 @@ public class Startup
         });
         
         app.Run();
-        
     }
 }
