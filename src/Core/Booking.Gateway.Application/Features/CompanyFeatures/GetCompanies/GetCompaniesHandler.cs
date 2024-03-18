@@ -25,7 +25,7 @@ public sealed class GetCompaniesHandler : IRequestHandler<GetCompaniesRequest, G
 
         return new GetCompaniesResponse
         {
-            Offset = request.Offset, TotalCount = response.Message.Companies.Count, Count = request.Count,
+            Offset = request.Offset, TotalCount = response.Message.Companies?.Count ?? 0, Count = request.Count,
             Items = response.Message.Companies.Select(elm=>_mapper.Map<CompanyGettingDto>(elm)).ToList()
         };
     }
