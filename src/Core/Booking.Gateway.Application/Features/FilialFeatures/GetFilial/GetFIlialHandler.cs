@@ -10,9 +10,9 @@ namespace Booking.Gateway.Application.Features.FilialFeatures.GetFilial;
 public sealed class GetFilialHandler : IRequestHandler<GetFilialRequest, GetFilialResponse>
 {
     private readonly IMapper _mapper;
-    private readonly IRequestClient<ContractRequests.GetFilialId> _requestFilial;
+    private readonly IRequestClient<ContractRequests.GetFilialById> _requestFilial;
 
-    public GetFilialHandler(IMapper mapper, IRequestClient<ContractRequests.GetFilialId> requestFilial)
+    public GetFilialHandler(IMapper mapper, IRequestClient<ContractRequests.GetFilialById> requestFilial)
     {
         _mapper = mapper;
         _requestFilial = requestFilial;

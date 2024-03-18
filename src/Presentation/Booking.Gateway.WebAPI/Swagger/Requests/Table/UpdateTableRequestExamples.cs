@@ -12,7 +12,6 @@ public class UpdateTableRequestExamples : IMultipleExamplesProvider<UpdateTableR
             new UpdateTableRequest
             {
                 Id = Guid.NewGuid(),
-                FilialId = Guid.NewGuid(),
                 Name = "TestTable1",
                 Description = "TestTableDescription1",
                 SeatsNumber = 4
@@ -23,7 +22,6 @@ public class UpdateTableRequestExamples : IMultipleExamplesProvider<UpdateTableR
             new UpdateTableRequest
             {
                 Id = Guid.NewGuid(),
-                FilialId = Guid.NewGuid(),
                 Name = "TestTable2",
                 Description = "TestTableDescription2",
                 SeatsNumber = 6

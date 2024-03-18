@@ -17,7 +17,6 @@ public class ClientGettingExamples : IMultipleExamplesProvider<ClientGettingDto>
                 FirstName = "Иван",
                 MiddleName = "Иванович",
                 PhoneNumber = "89112223344",
-                Password = "It's very StRoNg PassW0rd!1!"
             });
         
         yield return SwaggerExample.Create(
@@ -30,7 +29,6 @@ public class ClientGettingExamples : IMultipleExamplesProvider<ClientGettingDto>
                 FirstName = "Петр",
                 MiddleName = "Петрович",
                 PhoneNumber = "89112223355",
-                Password = "It's very StRoNg PassW0rd!2!"
             });
     }
 }

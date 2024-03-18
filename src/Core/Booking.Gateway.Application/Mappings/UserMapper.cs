@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Booking.Gateway.Application.Features.AdminFeatures.CreateAdmin;
+using Booking.Gateway.Application.Features.AdminFeatures.UpdateAdmin;
 using Booking.Gateway.Application.Features.ClientFeatures.CreateClient;
 using Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 using Booking.Gateway.Application.Features.ClientFeatures.UpdateClient;
@@ -20,8 +22,16 @@ public sealed class UserMapper : Profile
         CreateMap<UpdateClientRequest, UpdateUser>()
             .ForMember(d => d.RoleId, e => e.MapFrom(s => Roles.GetAllRolesWithIds()[Roles.Client]));
         CreateMap<UpdateUserResult, UpdateClientResponse>();
+        
+        CreateMap<CreateAdminRequest, CreateUser>()
+            .ForMember(d => d.RoleId, e => e.MapFrom(s => Roles.GetAllRolesWithIds()[Roles.Admin]));
+        CreateMap<CreateUserResult, CreateAdminResponse>();
+        
+        CreateMap<UpdateAdminRequest, UpdateUser>()
+            .ForMember(d => d.RoleId, e => e.MapFrom(s => Roles.GetAllRolesWithIds()[Roles.Admin]));
+        CreateMap<UpdateUserResult, UpdateAdminResponse>();
 
-        CreateMap<GetClientRequest, GetUserId>();
-        CreateMap<FullUserDto, GetClientResponse>();
+        CreateMap<GetClientRequest, GetUserById>();
+        CreateMap<GetUserResult, GetClientResponse>();
     }
 }

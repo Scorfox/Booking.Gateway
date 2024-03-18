@@ -2,6 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.ClientFeatures.UpdateClient;
 
-public record UpdateClientResponse : ClientGettingDto
-{    
-}
+public record UpdateClientResponse : ClientGettingDto;

@@ -1,20 +1,38 @@
 ﻿using AutoMapper;
+using Booking.Gateway.Application.Features.AdminFeatures.GetAdmins;
+using Booking.Gateway.Application.Models.Admin;
+using Booking.Gateway.Application.Models.Reservation;
+using MassTransit;
 using MediatR;
+using Otus.Booking.Common.Booking.Contracts.Company.Requests;
+using Otus.Booking.Common.Booking.Contracts.Company.Responses;
+using Otus.Booking.Common.Booking.Contracts.Reservation.Requests;
+using Otus.Booking.Common.Booking.Contracts.Reservation.Responses;
 
 namespace Booking.Gateway.Application.Features.ReservationFeatures.GetReservations;
 
 public sealed class GetReservationsHandler : IRequestHandler<GetReservationsRequest, GetReservationsResponse>
 {
     private readonly IMapper _mapper;
-
-    public GetReservationsHandler(IMapper mapper)
+    private IRequestClient<GetReservationsList> _requestClient;
+    
+    public GetReservationsHandler(IMapper mapper, IRequestClient<GetReservationsList> requestClient)
     {
         _mapper = mapper;
+        _requestClient = requestClient;
     }
 
     public async Task<GetReservationsResponse> Handle(GetReservationsRequest request, CancellationToken cancellationToken)
     {
-        // TODO: запрос в Booking.Auth
-        return new GetReservationsResponse();
+        var req = _mapper.Map<GetReservationsList>(request);
+        var response = await _requestClient.GetResponse<GetReservationsListResult>(req, cancellationToken);
+
+        return new GetReservationsResponse
+        {
+            Offset = request.Offset, 
+            TotalCount = response.Message.Elements.Count, 
+            Count = request.Count,
+            Items = _mapper.Map<List<ReservationGettingDto>>(response.Message.Elements)
+        };
     }
 }

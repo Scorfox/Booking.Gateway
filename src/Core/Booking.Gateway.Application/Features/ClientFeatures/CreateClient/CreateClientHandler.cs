@@ -15,7 +15,6 @@ public sealed class CreateClientHandler : IRequestHandler<CreateClientRequest, C
     {
         _mapper = mapper;
         _requestClient = requestClient;
-
     }
     
     public async Task<CreateClientResponse> Handle(CreateClientRequest request, CancellationToken cancellationToken)

@@ -20,7 +20,8 @@ public sealed class CreateCompanyHandler : IRequestHandler<CreateCompanyRequest,
     
     public async Task<CreateCompanyResponse> Handle(CreateCompanyRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestCompany.GetResponse<CreateCompanyResult>(_mapper.Map<ContractRequests.CreateCompany>(request), cancellationToken);
+        var response = await _requestCompany.GetResponse<CreateCompanyResult>
+            (_mapper.Map<ContractRequests.CreateCompany>(request), cancellationToken);
         return _mapper.Map<CreateCompanyResponse>(response.Message);
     }
 }

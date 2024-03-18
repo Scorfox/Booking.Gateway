@@ -9,9 +9,9 @@ namespace Booking.Gateway.Application.Features.TableFeatures.GetTable;
 public sealed class GetTableHandler : IRequestHandler<GetTableRequest, GetTableResponse>
 {
     private readonly IMapper _mapper;
-    private readonly IRequestClient<ContractRequests.GetTableId> _tableFilial;
+    private readonly IRequestClient<ContractRequests.GetTableById> _tableFilial;
 
-    public GetTableHandler(IMapper mapper, IRequestClient<ContractRequests.GetTableId> tableFilial)
+    public GetTableHandler(IMapper mapper, IRequestClient<ContractRequests.GetTableById> tableFilial)
     {
         _mapper = mapper;
         _tableFilial = tableFilial;

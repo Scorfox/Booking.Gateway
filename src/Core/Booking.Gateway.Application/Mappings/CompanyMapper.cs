@@ -11,6 +11,7 @@ using Otus.Booking.Common.Booking.Contracts.Company.Requests;
 using Otus.Booking.Common.Booking.Contracts.Company.Responses;
 using Otus.Booking.Common.Booking.Contracts.User.Requests;
 using Otus.Booking.Common.Booking.Contracts.User.Responses;
+using CompanyGettingDto = Booking.Gateway.Application.Models.Company.CompanyGettingDto;
 
 namespace Booking.Gateway.Application.Mappings;
 
@@ -22,15 +23,15 @@ public sealed class CompanyMapper : Profile
         CreateMap<CreateCompanyResult, CreateCompanyResponse>();
 
         CreateMap<DeleteCompanyRequest, DeleteCompany>();
-        CreateMap<FullCompanyDto, CompanyGettingDto>();
-        
-        CreateMap<GetCompaniesRequest, GetCompaniesList>()
-            .ForMember(i=>i.Limit, o=>o.MapFrom(elm=>elm.Count));
+        CreateMap<DeleteCompanyResult, DeleteCompanyResponse>();
+
+        CreateMap<GetCompaniesRequest, GetCompaniesList>();
+        CreateMap<Otus.Booking.Common.Booking.Contracts.Company.Models.CompanyGettingDto, CompanyGettingDto>();
 
         CreateMap<UpdateCompanyRequest, UpdateCompany>();
         CreateMap<UpdateCompanyResult, UpdateCompanyResponse>();
 
-        CreateMap<GetCompanyRequest, GetCompanyId>();
-        CreateMap<FullCompanyDto, GetCompanyResponse>();
+        CreateMap<GetCompanyRequest, GetCompanyById>();
+        CreateMap<GetCompanyResult, GetCompanyResponse>();
     }
 }
