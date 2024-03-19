@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Booking.Gateway.Application.Models.Company;
 using MassTransit;
 using MediatR;
 using Otus.Booking.Common.Booking.Contracts.Company.Responses;
@@ -10,18 +9,19 @@ namespace Booking.Gateway.Application.Features.CompanyFeatures.GetCompany;
 public sealed class GetCompanyHandler : IRequestHandler<GetCompanyRequest, GetCompanyResponse>
 {
     private readonly IMapper _mapper;
-    private readonly IRequestClient<ContractRequests.GetCompanyById> _requestCompany;
+    private readonly IRequestClient<ContractRequests.GetCompanyById> _requestClient;
 
-    public GetCompanyHandler(IMapper mapper, IRequestClient<ContractRequests.GetCompanyById> requestCompany)
+    public GetCompanyHandler(IMapper mapper, IRequestClient<ContractRequests.GetCompanyById> requestClient)
     {
         _mapper = mapper;
-        _requestCompany = requestCompany;
+        _requestClient = requestClient;
     }
 
     public async Task<GetCompanyResponse> Handle(GetCompanyRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestCompany.GetResponse<GetCompanyResult>
+        var response = await _requestClient.GetResponse<GetCompanyResult>
             (_mapper.Map<ContractRequests.GetCompanyById>(request), cancellationToken);
+        
         return _mapper.Map<GetCompanyResponse>(response.Message);
     }
 }

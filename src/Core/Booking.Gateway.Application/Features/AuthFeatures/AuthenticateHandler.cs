@@ -8,8 +8,8 @@ namespace Booking.Gateway.Application.Features.AuthFeatures;
 
 public sealed class AuthenticateHandler : IRequestHandler<AuthenticateRequest, AuthenticateResponse>
 {
-    private readonly IRequestClient<Authenticate> _requestClient;
     private readonly IMapper _mapper;
+    private readonly IRequestClient<Authenticate> _requestClient;
 
     public AuthenticateHandler(IMapper mapper, IRequestClient<Authenticate> requestClient)
     {
@@ -19,7 +19,9 @@ public sealed class AuthenticateHandler : IRequestHandler<AuthenticateRequest, A
 
     public async Task<AuthenticateResponse> Handle(AuthenticateRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestClient.GetResponse<AuthenticateResult>(_mapper.Map<Authenticate>(request));
+        var response = await _requestClient.GetResponse<AuthenticateResult>
+            (_mapper.Map<Authenticate>(request), cancellationToken);
+        
         return _mapper.Map<AuthenticateResponse>(response.Message);
     }
 }

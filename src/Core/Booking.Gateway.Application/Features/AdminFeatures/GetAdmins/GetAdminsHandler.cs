@@ -2,15 +2,15 @@ using AutoMapper;
 using Booking.Gateway.Application.Models.Admin;
 using MassTransit;
 using MediatR;
-using Otus.Booking.Common.Booking.Contracts.Company.Requests;
-using Otus.Booking.Common.Booking.Contracts.Company.Responses;
+using Otus.Booking.Common.Booking.Contracts.User.Requests;
+using Otus.Booking.Common.Booking.Contracts.User.Responses;
 
 namespace Booking.Gateway.Application.Features.AdminFeatures.GetAdmins;
 
 public sealed class GetAdminsHandler : IRequestHandler<GetAdminsRequest, GetAdminsResponse>
 {
     private readonly IMapper _mapper;
-    private IRequestClient<GetAdminsRequest> _requestClient;
+    private readonly IRequestClient<GetAdminsRequest> _requestClient;
 
     public GetAdminsHandler(IMapper mapper, IRequestClient<GetAdminsRequest> requestClient)
     {
@@ -20,8 +20,8 @@ public sealed class GetAdminsHandler : IRequestHandler<GetAdminsRequest, GetAdmi
 
     public async Task<GetAdminsResponse> Handle(GetAdminsRequest request, CancellationToken cancellationToken)
     {
-        var req = _mapper.Map<GetCompaniesList>(request);
-        var response = await _requestClient.GetResponse<GetCompaniesListResult>(req, cancellationToken);
+        var response = await _requestClient.GetResponse<GetUsersListResult>
+            (_mapper.Map<GetUsersList>(request), cancellationToken);
 
         return new GetAdminsResponse
         {

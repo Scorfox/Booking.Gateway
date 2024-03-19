@@ -3,4 +3,4 @@ using MediatR;
 
 namespace Booking.Gateway.Application.Features.AdminFeatures.DeleteAdmin;
 
-public sealed record DeleteAdminRequest : RequestById, IRequest<DeleteAdminResponse> { }
+public sealed record DeleteAdminRequest : RequestById, IRequest<DeleteAdminResponse>;

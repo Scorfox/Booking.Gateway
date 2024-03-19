@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Booking.Gateway.Application.Features.AdminFeatures.DeleteAdmin;
 using MassTransit;
 using MediatR;
 using Otus.Booking.Common.Booking.Contracts.User.Responses;
@@ -20,7 +19,9 @@ public sealed class DeleteClientHandler : IRequestHandler<DeleteClientRequest, D
 
     public async Task<DeleteClientResponse> Handle(DeleteClientRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestClient.GetResponse<DeleteUserResult>(_mapper.Map<ContractRequests.DeleteUser>(request), cancellationToken);
+        var response = await _requestClient.GetResponse<DeleteUserResult>
+            (_mapper.Map<ContractRequests.DeleteUser>(request), cancellationToken);
+        
         return _mapper.Map<DeleteClientResponse>(response.Message);
     }
 }

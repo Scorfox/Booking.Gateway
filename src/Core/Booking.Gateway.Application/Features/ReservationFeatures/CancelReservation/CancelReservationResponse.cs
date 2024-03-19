@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.ReservationFeatures.CancelReservation;
 
-public sealed record CancelReservationResponse : ReservationGettingDto { }
+public sealed record CancelReservationResponse : ReservationGettingDto;

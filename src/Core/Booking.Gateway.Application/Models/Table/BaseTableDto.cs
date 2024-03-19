@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Booking.Gateway.Application.Models.Table;
+﻿namespace Booking.Gateway.Application.Models.Table;
 
 public abstract record BaseTableDto
 {

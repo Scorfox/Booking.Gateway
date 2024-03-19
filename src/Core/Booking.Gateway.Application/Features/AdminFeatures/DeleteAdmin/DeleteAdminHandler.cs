@@ -19,7 +19,9 @@ public sealed class DeleteAdminHandler : IRequestHandler<DeleteAdminRequest, Del
 
     public async Task<DeleteAdminResponse> Handle(DeleteAdminRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestClient.GetResponse<DeleteUserResult>(_mapper.Map<ContractRequests.DeleteUser>(request), cancellationToken);
+        var response = await _requestClient.GetResponse<DeleteUserResult>
+            (_mapper.Map<ContractRequests.DeleteUser>(request), cancellationToken);
+        
         return _mapper.Map<DeleteAdminResponse>(response.Message);
     }
 }

@@ -8,19 +8,20 @@ namespace Booking.Gateway.Application.Features.FilialFeatures.CreateFilial;
 
 public sealed class CreateFilialHandler : IRequestHandler<CreateFilialRequest, CreateFilialResponse>
 {
-    private readonly IRequestClient<ContractRequests.CreateFilial> _requestFilial;
     private readonly IMapper _mapper;
+    private readonly IRequestClient<ContractRequests.CreateFilial> _requestClient;
 
-    public CreateFilialHandler(IMapper mapper, IRequestClient<ContractRequests.CreateFilial> requestFilial)
+    public CreateFilialHandler(IMapper mapper, IRequestClient<ContractRequests.CreateFilial> requestClient)
     {
         _mapper = mapper;
-        _requestFilial = requestFilial;
-
+        _requestClient = requestClient;
     }
     
     public async Task<CreateFilialResponse> Handle(CreateFilialRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestFilial.GetResponse<CreateFilialResult>(_mapper.Map<ContractRequests.CreateFilial>(request), cancellationToken);
+        var response = await _requestClient.GetResponse<CreateFilialResult>
+            (_mapper.Map<ContractRequests.CreateFilial>(request), cancellationToken);
+        
         return _mapper.Map<CreateFilialResponse>(response.Message);
     }
 }

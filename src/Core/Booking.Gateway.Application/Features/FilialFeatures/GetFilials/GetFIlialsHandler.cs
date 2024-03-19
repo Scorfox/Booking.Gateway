@@ -10,7 +10,7 @@ namespace Booking.Gateway.Application.Features.FilialFeatures.GetFilials;
 public sealed class GetFilialsHandler : IRequestHandler<GetFilialsRequest, GetFilialsResponse>
 {
     private readonly IMapper _mapper;
-    private IRequestClient<GetFilialsList> _requestClient;
+    private readonly IRequestClient<GetFilialsList> _requestClient;
 
     public GetFilialsHandler(IMapper mapper, IRequestClient<GetFilialsList> requestClient)
     {
@@ -20,8 +20,8 @@ public sealed class GetFilialsHandler : IRequestHandler<GetFilialsRequest, GetFi
 
     public async Task<GetFilialsResponse> Handle(GetFilialsRequest request, CancellationToken cancellationToken)
     {
-        var req = _mapper.Map<GetFilialsList>(request);
-        var response = await _requestClient.GetResponse<GetFilialsListResult>(req, cancellationToken);
+        var response = await _requestClient.GetResponse<GetFilialsListResult>
+            (_mapper.Map<GetFilialsList>(request), cancellationToken);
 
         return new GetFilialsResponse
         {

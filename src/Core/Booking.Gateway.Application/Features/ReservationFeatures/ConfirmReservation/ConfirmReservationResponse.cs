@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.ReservationFeatures.ConfirmReservation;
 
-public sealed record ConfirmReservationResponse : ReservationGettingDto { }
+public sealed record ConfirmReservationResponse : ReservationGettingDto;

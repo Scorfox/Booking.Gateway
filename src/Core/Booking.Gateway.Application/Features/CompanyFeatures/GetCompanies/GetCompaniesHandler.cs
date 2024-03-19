@@ -9,8 +9,8 @@ namespace Booking.Gateway.Application.Features.CompanyFeatures.GetCompanies;
 
 public sealed class GetCompaniesHandler : IRequestHandler<GetCompaniesRequest, GetCompaniesResponse>
 {
-    private IRequestClient<GetCompaniesList> _requestClient;
     private readonly IMapper _mapper;
+    private readonly IRequestClient<GetCompaniesList> _requestClient;
 
     public GetCompaniesHandler(IMapper mapper, IRequestClient<GetCompaniesList> requestClient)
     {
@@ -20,8 +20,8 @@ public sealed class GetCompaniesHandler : IRequestHandler<GetCompaniesRequest, G
 
     public async Task<GetCompaniesResponse> Handle(GetCompaniesRequest request, CancellationToken cancellationToken)
     {
-        var req = _mapper.Map<GetCompaniesList>(request);
-        var response = await _requestClient.GetResponse<GetCompaniesListResult>(req, cancellationToken);
+        var response = await _requestClient.GetResponse<GetCompaniesListResult>
+            (_mapper.Map<GetCompaniesList>(request), cancellationToken);
 
         return new GetCompaniesResponse
         {

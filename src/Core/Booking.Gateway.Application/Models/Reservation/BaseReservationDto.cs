@@ -3,7 +3,6 @@
 public abstract record BaseReservationDto
 {
     public Guid TableId { get; set; }
-    
     public Guid WhoBookedId { get; set; }
     
     public DateTimeOffset From { get; set; }

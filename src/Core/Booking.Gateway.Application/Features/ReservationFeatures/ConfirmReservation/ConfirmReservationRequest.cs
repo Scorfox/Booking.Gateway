@@ -4,4 +4,4 @@ using MediatR;
 
 namespace Booking.Gateway.Application.Features.ReservationFeatures.ConfirmReservation;
 
-public sealed record ConfirmReservationRequest : BaseReservationDto, IRequest<CreateReservationResponse> { }
+public sealed record ConfirmReservationRequest : BaseReservationDto, IRequest<CreateReservationResponse>;

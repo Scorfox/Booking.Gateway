@@ -9,8 +9,8 @@ namespace Booking.Gateway.Application.Features.ReservationFeatures.ConfirmReserv
 
 public sealed class ConfirmReservationHandler : IRequestHandler<CreateReservationRequest, CreateReservationResponse>
 {
-    private readonly IRequestClient<ContractRequests.CreateReservation> _requestReservation;
     private readonly IMapper _mapper;
+    private readonly IRequestClient<ContractRequests.CreateReservation> _requestReservation;
 
     public ConfirmReservationHandler(IMapper mapper, IRequestClient<ContractRequests.CreateReservation> requestReservation)
     {
@@ -20,7 +20,9 @@ public sealed class ConfirmReservationHandler : IRequestHandler<CreateReservatio
     
     public async Task<CreateReservationResponse> Handle(CreateReservationRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestReservation.GetResponse<CreateReservationResult>(_mapper.Map<ContractRequests.CreateReservation>(request), cancellationToken);
+        var response = await _requestReservation.GetResponse<CreateReservationResult>
+            (_mapper.Map<ContractRequests.CreateReservation>(request), cancellationToken);
+        
         return _mapper.Map<CreateReservationResponse>(response.Message);
     }
 }

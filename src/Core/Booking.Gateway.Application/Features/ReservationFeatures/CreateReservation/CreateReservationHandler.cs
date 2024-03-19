@@ -8,8 +8,8 @@ namespace Booking.Gateway.Application.Features.ReservationFeatures.CreateReserva
 
 public sealed class CreateReservationHandler : IRequestHandler<CreateReservationRequest, CreateReservationResponse>
 {
-    private readonly IRequestClient<ContractRequests.CreateReservation> _requestReservation;
     private readonly IMapper _mapper;
+    private readonly IRequestClient<ContractRequests.CreateReservation> _requestReservation;
 
     public CreateReservationHandler(IMapper mapper, IRequestClient<ContractRequests.CreateReservation> requestReservation)
     {
@@ -19,7 +19,9 @@ public sealed class CreateReservationHandler : IRequestHandler<CreateReservation
     
     public async Task<CreateReservationResponse> Handle(CreateReservationRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestReservation.GetResponse<CreateReservationResult>(_mapper.Map<ContractRequests.CreateReservation>(request), cancellationToken);
+        var response = await _requestReservation.GetResponse<CreateReservationResult>
+            (_mapper.Map<ContractRequests.CreateReservation>(request), cancellationToken);
+        
         return _mapper.Map<CreateReservationResponse>(response.Message);
     }
 }

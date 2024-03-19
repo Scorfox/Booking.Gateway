@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.FilialFeatures.DeleteFilial;
 
-public sealed record DeleteFilialResponse : BaseDeletionResponse { }
+public sealed record DeleteFilialResponse : BaseDeletionResponse;

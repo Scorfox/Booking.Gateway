@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.ReservationFeatures.UpdateReservation;
 
-public record UpdateReservationResponse : ReservationGettingDto { }
+public record UpdateReservationResponse : ReservationGettingDto;

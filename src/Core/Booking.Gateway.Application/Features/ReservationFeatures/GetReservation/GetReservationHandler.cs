@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using Booking.Gateway.Application.Features.ClientFeatures.GetClient;
 using MassTransit;
 using MediatR;
-using Otus.Booking.Common.Booking.Contracts.Reservation.Models;
 using Otus.Booking.Common.Booking.Contracts.Reservation.Responses;
 using Otus.Booking.Common.Booking.Contracts.User.Requests;
 using Otus.Booking.Common.Booking.Contracts.User.Responses;
@@ -31,11 +29,11 @@ public sealed class GetReservationHandler : IRequestHandler<GetReservationReques
     {
         var reservationResult = (await _requestForReservation.GetResponse<GetReservationResult>
             (_mapper.Map<ContractRequests.GetReservationById>(request), cancellationToken)).Message;
-        var clientInfo = (await _requestForUser.GetResponse<GetUserResult>
-            (new GetUserById {Id = reservationResult.WhoBookedId}, cancellationToken)).Message;
+        var clientResult = (await _requestForUser.GetResponse<GetUserResult>
+            (new GetUserById { Id = reservationResult.WhoBookedId }, cancellationToken)).Message;
 
         var response = _mapper.Map<GetReservationResponse>(reservationResult);
-        _mapper.Map(clientInfo, response);
+        _mapper.Map(clientResult, response);
 
         return response;
     }

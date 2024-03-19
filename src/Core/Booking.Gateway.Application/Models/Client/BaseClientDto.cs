@@ -2,6 +2,4 @@
 
 namespace Booking.Gateway.Application.Models.Client;
 
-public abstract record BaseClientDto : BaseUserDto
-{
-}
+public abstract record BaseClientDto : BaseUserDto;

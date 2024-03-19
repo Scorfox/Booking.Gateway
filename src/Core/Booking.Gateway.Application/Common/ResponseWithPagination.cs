@@ -1,6 +1,6 @@
 ﻿namespace Booking.Gateway.Application.Common;
 
-public record class ResponseWithPagination<T>
+public record ResponseWithPagination<T>
 {
     public int Offset { get; set; }
     public int Count { get; set; }

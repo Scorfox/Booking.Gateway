@@ -19,7 +19,9 @@ public sealed class CreateAdminHandler : IRequestHandler<CreateAdminRequest, Cre
     
     public async Task<CreateAdminResponse> Handle(CreateAdminRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestClient.GetResponse<CreateUserResult>(_mapper.Map<ContractRequests.CreateUser>(request), cancellationToken);
+        var response = await _requestClient.GetResponse<CreateUserResult>
+            (_mapper.Map<ContractRequests.CreateUser>(request), cancellationToken);
+        
         return _mapper.Map<CreateAdminResponse>(response.Message);
     }
 }

@@ -3,4 +3,4 @@ using Booking.Gateway.Application.Models.Admin;
 
 namespace Booking.Gateway.Application.Features.AdminFeatures.GetAdmins;
 
-public record GetAdminsResponse : ResponseWithPagination<AdminGettingDto> { }
+public record GetAdminsResponse : ResponseWithPagination<AdminGettingDto>;

@@ -3,4 +3,4 @@ using MediatR;
 
 namespace Booking.Gateway.Application.Features.AdminFeatures.GetAdmin;
 
-public sealed record GetAdminRequest : RequestById, IRequest<GetAdminResponse> { }
+public sealed record GetAdminRequest : RequestById, IRequest<GetAdminResponse>;

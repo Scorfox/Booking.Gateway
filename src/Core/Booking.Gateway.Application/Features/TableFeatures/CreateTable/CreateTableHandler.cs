@@ -8,18 +8,20 @@ namespace Booking.Gateway.Application.Features.TableFeatures.CreateTable;
 
 public sealed class CreateTableHandler : IRequestHandler<CreateTableRequest, CreateTableResponse>
 {
-    private readonly IRequestClient<ContractRequests.CreateTable> _requestTable;
     private readonly IMapper _mapper;
+    private readonly IRequestClient<ContractRequests.CreateTable> _requestClient;
 
-    public CreateTableHandler(IMapper mapper, IRequestClient<ContractRequests.CreateTable> requestTable)
+    public CreateTableHandler(IMapper mapper, IRequestClient<ContractRequests.CreateTable> requestClient)
     {
         _mapper = mapper;
-        _requestTable = requestTable;
+        _requestClient = requestClient;
     }
     
     public async Task<CreateTableResponse> Handle(CreateTableRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestTable.GetResponse<CreateTableResult>(_mapper.Map<ContractRequests.CreateTable>(request), cancellationToken);
+        var response = await _requestClient.GetResponse<CreateTableResult>
+            (_mapper.Map<ContractRequests.CreateTable>(request), cancellationToken);
+        
         return _mapper.Map<CreateTableResponse>(response.Message);
     }
 }
