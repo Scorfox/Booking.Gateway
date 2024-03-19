@@ -3,4 +3,7 @@ using MediatR;
 
 namespace Booking.Gateway.Application.Features.ReservationFeatures.GetReservation;
 
-public sealed record GetReservationRequest : RequestById, IRequest<GetReservationResponse> { }
+public sealed record GetReservationRequest : RequestById, IRequest<GetReservationResponse>
+{
+    public Guid CompanyId { get; set; }
+}

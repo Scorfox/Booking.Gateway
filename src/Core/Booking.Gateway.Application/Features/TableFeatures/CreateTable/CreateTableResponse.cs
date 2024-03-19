@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.TableFeatures.CreateTable;
 
-public sealed record CreateTableResponse : TableGettingDto { }
+public sealed record CreateTableResponse : TableGettingDto;

@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.ClientFeatures.DeleteClient;
 
-public sealed record DeleteClientResponse : BaseDeletionResponse { }
+public sealed record DeleteClientResponse : BaseDeletionResponse;

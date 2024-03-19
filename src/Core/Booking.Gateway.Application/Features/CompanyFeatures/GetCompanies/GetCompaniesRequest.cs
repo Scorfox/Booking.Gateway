@@ -3,4 +3,4 @@ using MediatR;
 
 namespace Booking.Gateway.Application.Features.CompanyFeatures.GetCompanies;
 
-public sealed record GetCompaniesRequest : RequestWithPagination, IRequest<GetCompaniesResponse> { }
+public sealed record GetCompaniesRequest : RequestWithPagination, IRequest<GetCompaniesResponse>;

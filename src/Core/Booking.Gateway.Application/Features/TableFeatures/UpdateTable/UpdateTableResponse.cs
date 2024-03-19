@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.TableFeatures.UpdateTable;
 
-public sealed record UpdateTableResponse : TableGettingDto { }
+public sealed record UpdateTableResponse : TableGettingDto;

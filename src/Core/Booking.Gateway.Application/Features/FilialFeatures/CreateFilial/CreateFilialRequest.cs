@@ -3,4 +3,4 @@ using MediatR;
 
 namespace Booking.Gateway.Application.Features.FilialFeatures.CreateFilial;
 
-public sealed record CreateFilialRequest : BaseFilialDto, IRequest<CreateFilialResponse> { }
+public sealed record CreateFilialRequest : BaseFilialDto, IRequest<CreateFilialResponse>;

@@ -13,15 +13,15 @@ public sealed class DeleteCompanyHandler : IRequestHandler<DeleteCompanyRequest,
 
     public DeleteCompanyHandler(IMapper mapper, IRequestClient<ContractRequests.DeleteCompany> requestCompany)
     {
-        _requestCompany = requestCompany;
         _mapper = mapper;
+        _requestCompany = requestCompany;
     }
 
     public async Task<DeleteCompanyResponse> Handle(DeleteCompanyRequest request, CancellationToken cancellationToken)
     {
-        await _requestCompany.GetResponse<DeleteCompanyResult>(
-            _mapper.Map<ContractRequests.DeleteCompany>(request), cancellationToken);
+        await _requestCompany.GetResponse<DeleteCompanyResult>
+            (_mapper.Map<ContractRequests.DeleteCompany>(request), cancellationToken);
 
-        return new DeleteCompanyResponse{Id = request.Id};
+        return new DeleteCompanyResponse { Id = request.Id };
     }
 }

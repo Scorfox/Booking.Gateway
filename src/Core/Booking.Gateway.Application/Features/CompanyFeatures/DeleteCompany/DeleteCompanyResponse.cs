@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.CompanyFeatures.DeleteCompany;
 
-public sealed record DeleteCompanyResponse : BaseDeletionResponse { }
+public sealed record DeleteCompanyResponse : BaseDeletionResponse;

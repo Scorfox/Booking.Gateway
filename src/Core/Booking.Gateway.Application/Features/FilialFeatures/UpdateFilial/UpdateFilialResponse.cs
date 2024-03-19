@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.FilialFeatures.UpdateFilial;
 
-public sealed record UpdateFilialResponse : FilialGettingDto { }
+public sealed record UpdateFilialResponse : FilialGettingDto;

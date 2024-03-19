@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.CompanyFeatures.UpdateCompany;
 
-public sealed record UpdateCompanyResponse : CompanyGettingDto { }
+public sealed record UpdateCompanyResponse : CompanyGettingDto;

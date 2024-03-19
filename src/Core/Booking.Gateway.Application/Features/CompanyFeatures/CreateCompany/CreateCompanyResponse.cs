@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.CompanyFeatures.CreateCompany;
 
-public sealed record CreateCompanyResponse : CompanyGettingDto { }
+public sealed record CreateCompanyResponse : CompanyGettingDto;

@@ -8,19 +8,20 @@ namespace Booking.Gateway.Application.Features.TableFeatures.UpdateTable;
 
 public sealed class UpdateTableHandler : IRequestHandler<UpdateTableRequest, UpdateTableResponse>
 {
-    private readonly IRequestClient<ContractRequests.UpdateTable> _requestTable;
     private readonly IMapper _mapper;
+    private readonly IRequestClient<ContractRequests.UpdateTable> _requestClient;
 
-    public UpdateTableHandler(IMapper mapper, IRequestClient<ContractRequests.UpdateTable> requestTable)
+    public UpdateTableHandler(IMapper mapper, IRequestClient<ContractRequests.UpdateTable> requestClient)
     {
         _mapper = mapper;
-        _requestTable = requestTable;
-
+        _requestClient = requestClient;
     }
     
     public async Task<UpdateTableResponse> Handle(UpdateTableRequest request, CancellationToken cancellationToken)
     {
-        var response = await _requestTable.GetResponse<UpdateTableResult>(_mapper.Map<ContractRequests.UpdateTable>(request), cancellationToken);
+        var response = await _requestClient.GetResponse<UpdateTableResult>
+            (_mapper.Map<ContractRequests.UpdateTable>(request), cancellationToken);
+        
         return _mapper.Map<UpdateTableResponse>(response.Message);
     }
 }

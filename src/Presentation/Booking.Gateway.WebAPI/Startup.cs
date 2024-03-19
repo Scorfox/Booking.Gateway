@@ -1,8 +1,11 @@
 ﻿//#define dds_tests
 
+using System.Text;
 using Booking.Gateway.Application;
 using Booking.WebAPI.Extensions;
 using MassTransit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -22,18 +25,6 @@ public class Startup
         services.ConfigureApplication();
         services.AddMassTransit(x =>
         {
-#if dds_tests
-            x.UsingRabbitMq((context, cfg) =>
-            {
-                cfg.Host(Configuration["RabbitMQdds:Host"], h =>
-                {
-                    h.Username(Configuration["RabbitMQdds:Username"]);
-                    h.Password(Configuration["RabbitMQdds:Password"]);
-                });
-            });
-
-#else
-            // Добавляем шину сообщений
             x.UsingRabbitMq((context, cfg) =>
             {
                 cfg.Host(Configuration["RabbitMQ:Host"], h =>
@@ -42,17 +33,67 @@ public class Startup
                     h.Password(Configuration["RabbitMQ:Password"]);
                 });
             });
-#endif
         });
-        services.AddSwaggerGen(c =>
+           
+        services.AddSwaggerGen(option =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });           
-            c.ExampleFilters();
+            option.SwaggerDoc("v1", new OpenApiInfo { Title = "Test API", Version = "v1" });
+            option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Description = "Please enter a valid token",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                BearerFormat = "JWT",
+                Scheme = "Bearer"
+            });
+            option.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type=ReferenceType.SecurityScheme,
+                            Id="Bearer"
+                        }
+                    },
+                    new string[]{}
+                }
+            });
         });
+        
         services.AddSwaggerExamplesFromAssemblyOf<Startup>(); 
+            
         services.AddMvc();
-
+        
         services.AddControllers();
+        
+        var validIssuer = Configuration.GetValue<string>("Jwt:Issuer");
+        var validAudience = Configuration.GetValue<string>("Jwt:Audience");
+        var symmetricSecurityKey = Configuration.GetValue<string>("Jwt:SecretKey");
+
+        services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;})
+            .AddJwtBearer(options =>
+            {
+                options.IncludeErrorDetails = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ClockSkew = TimeSpan.Zero,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = validIssuer,
+                    ValidAudience = validAudience,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(symmetricSecurityKey)
+                    ),
+                };
+            });
     }
     
     public void Configure(WebApplication app, IWebHostEnvironment env) 
@@ -61,6 +102,7 @@ public class Startup
         app.UseErrorHandler();
         app.UseStaticFiles();
         app.UseRouting();
+        app.UseAuthentication();
         app.UseAuthorization();
         
         // Enable middleware to serve generated Swagger as a JSON endpoint.

@@ -2,4 +2,4 @@
 
 namespace Booking.Gateway.Application.Features.TableFeatures.DeleteTable;
 
-public sealed record DeleteTableResponse : BaseDeletionResponse { }
+public sealed record DeleteTableResponse : BaseDeletionResponse;
