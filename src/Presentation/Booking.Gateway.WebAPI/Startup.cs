@@ -65,12 +65,12 @@ public class Startup
 
         services.AddCors(options =>
         {
-            options.AddDefaultPolicy(
-                services =>
+            options.AddPolicy(name: "CorsApi",
+                builder =>
                 {
-                    services.WithOrigins(Configuration["RabbitMQ:Host"])
-                            .AllowAnyHeader()
-                            .AllowAnyMethod();
+                    builder.WithOrigins("http://localhost:5173")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
                 });
         });
 
@@ -112,10 +112,11 @@ public class Startup
         app.MapControllers();
         app.UseErrorHandler();
         app.UseStaticFiles();
+        app.UseHttpsRedirection();
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
-        app.UseCors();
+        app.UseCors("CorsApi");
         
         // Enable middleware to serve generated Swagger as a JSON endpoint.
         app.UseSwagger();
