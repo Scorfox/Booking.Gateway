@@ -62,7 +62,18 @@ public class Startup
                 }
             });
         });
-        
+
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(
+                services =>
+                {
+                    services.WithOrigins(Configuration["RabbitMQ:Host"])
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                });
+        });
+
         services.AddSwaggerExamplesFromAssemblyOf<Startup>(); 
             
         services.AddMvc();
@@ -104,6 +115,7 @@ public class Startup
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
+        app.UseCors();
         
         // Enable middleware to serve generated Swagger as a JSON endpoint.
         app.UseSwagger();
