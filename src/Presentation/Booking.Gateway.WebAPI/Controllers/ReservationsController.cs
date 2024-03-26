@@ -10,6 +10,8 @@ using Swashbuckle.AspNetCore.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Otus.Booking.Common;
+using Microsoft.Net.Http.Headers;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Booking.WebAPI.Controllers;
 
@@ -40,6 +42,7 @@ public class ReservationsController : ControllerBase
     
     [HttpPost]
     [Authorize]
+    //[AllowAnonymous]
     [SwaggerRequestExample(typeof(CreateReservationRequest), typeof(CreateReservationRequestExamples))]
     [SwaggerResponseExample(200, typeof(ReservationGettingExamples))]
     public async Task<CreateReservationResponse> CreateReservation([FromBody] CreateReservationRequest request, CancellationToken cancellationToken)
@@ -49,6 +52,7 @@ public class ReservationsController : ControllerBase
     
     [HttpPatch("{Id}/cancel")]
     [Authorize]
+    //[AllowAnonymous]
     [SwaggerRequestExample(typeof(UpdateReservationRequest), typeof(UpdateReservationRequestExamples))]
     [SwaggerResponseExample(200, typeof(ReservationGettingExamples))]
     public async Task<UpdateReservationResponse> CancelReservation(Guid id, [FromBody] UpdateReservationRequest request, CancellationToken cancellationToken)
@@ -60,6 +64,7 @@ public class ReservationsController : ControllerBase
     [HttpPatch("{Id}/confirm")]
     [Roles(Roles.SuperAdmin, Roles.Admin)]
     [CompanyAuthorizationFilter]
+  // [AllowAnonymous]
     [SwaggerRequestExample(typeof(UpdateReservationRequest), typeof(UpdateReservationRequestExamples))]
     [SwaggerResponseExample(200, typeof(ReservationGettingExamples))]
     public async Task<UpdateReservationResponse> ConfirmReservation(Guid id, [FromBody] UpdateReservationRequest request, CancellationToken cancellationToken)
