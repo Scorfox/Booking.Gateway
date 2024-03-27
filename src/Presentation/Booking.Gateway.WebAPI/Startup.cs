@@ -62,7 +62,19 @@ public class Startup
                 }
             });
         });
-        
+
+        services.AddCors(options =>
+        {
+            options.AddPolicy(name: "CorsApi",
+                builder =>
+                {
+                    var origins = Configuration["AllowedOrigins"]!.Split(";");
+                    builder.WithOrigins(origins)
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+        });
+
         services.AddSwaggerExamplesFromAssemblyOf<Startup>(); 
             
         services.AddMvc();
@@ -101,9 +113,11 @@ public class Startup
         app.MapControllers();
         app.UseErrorHandler();
         app.UseStaticFiles();
+        app.UseHttpsRedirection();
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
+        app.UseCors("CorsApi");
         
         // Enable middleware to serve generated Swagger as a JSON endpoint.
         app.UseSwagger();
