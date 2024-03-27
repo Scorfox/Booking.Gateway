@@ -24,7 +24,7 @@ public class CompaniesController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("{CompanyId}")]
+    [HttpGet("{Id}")]
     public async Task<GetCompanyResponse> GetCompany([FromQuery] GetCompanyRequest request, CancellationToken cancellationToken)
     {
         return await _mediator.Send(request, cancellationToken);
@@ -45,18 +45,18 @@ public class CompaniesController : ControllerBase
         return await _mediator.Send(request, cancellationToken);
     }
     
-    [HttpPut("{CompanyId}")]
+    [HttpPut("{Id}")]
     [Roles(Roles.SuperAdmin, Roles.Admin)]
-    [CompanyAuthorizationFilter]
+    [CompanyWithoutPrefixAuthorizationFilter]
     [SwaggerRequestExample(typeof(UpdateCompanyRequest), typeof(UpdateCompanyRequestExamples))]
     [SwaggerResponseExample(200, typeof(CompanyGettingExamples))]
-    public async Task<UpdateCompanyResponse> UpdateCompany(Guid id, [FromBody] UpdateCompanyRequest request, CancellationToken cancellationToken)
+    public async Task<UpdateCompanyResponse> UpdateCompany(Guid Id, [FromBody] UpdateCompanyRequest request, CancellationToken cancellationToken)
     {
-        request.Id = id;
+        request.Id = Id;
         return await _mediator.Send(request, cancellationToken);
     }
     
-    [HttpDelete("{CompanyId}")]
+    [HttpDelete("{Id}")]
     [Roles(Roles.SuperAdmin)]
     public async Task<DeleteCompanyResponse> DeleteCompany(DeleteCompanyRequest request, CancellationToken cancellationToken)
     {
