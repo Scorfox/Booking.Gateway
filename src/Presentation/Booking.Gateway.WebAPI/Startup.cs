@@ -68,7 +68,8 @@ public class Startup
             options.AddPolicy(name: "CorsApi",
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:5173")
+                    var origins = Configuration["AllowedOrigins"]!.Split(";");
+                    builder.WithOrigins(origins)
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 });
